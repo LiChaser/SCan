@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目录扫描 - Licharser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00a1ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #00ff88;
+        }
+        .container {
+            padding-top: 2rem;
+        }
+        .scan-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 12px;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            box-shadow: none;
+        }
+        .btn-scan {
+            background: linear-gradient(45deg, #00ff88, #00a1ff);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: #fff;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-scan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        .results-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .dir-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .dir-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        .progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            background: linear-gradient(45deg, #00ff88, #00a1ff);
+        }
+        .stats-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00a1ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .wordlist-container {
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .wordlist-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .wordlist-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .wordlist-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        .wordlist-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('dashboard') }}">Licharser</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('dashboard') }}">仪表盘</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('scan') }}">端口扫描</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('dirscan') }}">目录扫描</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('fingerprint') }}">指纹探测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="scan-container">
+                    <h3 class="mb-4">目录扫描</h3>
+                    <form id="scanForm">
+                        <div class="mb-3">
+                            <label class="form-label">目标URL</label>
+                            <input type="url" class="form-control" id="target_url" placeholder="例如: http://example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="use_default" checked>
+                                <label class="form-check-label" for="use_default">
+                                    使用默认字典
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3" id="custom_wordlist_container" style="display: none;">
+                            <label class="form-label">自定义字典</label>
+                            <textarea class="form-control" id="wordlist" rows="10" placeholder="每行一个目录"></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-scan flex-grow-1" id="scanButton">开始扫描</button>
+                            <button type="button" class="btn btn-danger" id="stopScan" disabled>停止扫描</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="stats-container mt-4">
+                    <div class="stats-card">
+                        <div class="stats-number" id="foundDirsCount">0</div>
+                        <div class="stats-label">发现目录</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number" id="errorDirsCount">0</div>
+                        <div class="stats-label">错误目录</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number" id="scanProgress">100%</div>
+                        <div class="stats-label">扫描进度</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number" id="scanSpeed">0 个/秒</div>
+                        <div class="stats-label">扫描速度</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number" id="remainingTime">0秒</div>
+                        <div class="stats-label">预计剩余时间</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="results-container">
+                    <h3 class="mb-4">扫描结果</h3>
+                    <div id="currentDir" style="font-family:monospace;color:#00ff88;margin-bottom:10px;"></div>
+                    <div class="progress mb-4">
+                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <div id="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io('http://127.0.0.1:5000', {
+            transports: ['websocket'],
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000,
+            timeout: 10000
+        });
+
+        let totalDirs = 0;
+        let scannedDirs = 0;
+        let foundDirs = 0;
+        let errorDirs = 0;
+        let isScanning = false;
+        let scanStartTime = null;
+        let progressUpdateInterval = null;
+
+        // 更新统计信息
+        function updateStats() {
+            document.getElementById('foundDirsCount').textContent = foundDirs;
+            document.getElementById('errorDirsCount').textContent = errorDirs;
+            
+            // 计算扫描速度
+            if (scanStartTime && scannedDirs > 0) {
+                const elapsedTime = (Date.now() - scanStartTime) / 1000; // 转换为秒
+                const speed = Math.round(scannedDirs / elapsedTime);
+                document.getElementById('scanSpeed').textContent = `${speed} 个/秒`;
+            }
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            if (totalDirs > 0) {
+                const progress = (scannedDirs / totalDirs) * 100;
+                const progressBar = document.querySelector('.progress-bar');
+                const progressText = document.getElementById('scanProgress');
+                
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${Math.round(progress)}%`;
+                
+                // 更新预计剩余时间
+                if (scanStartTime && scannedDirs > 0) {
+                    const elapsedTime = (Date.now() - scanStartTime) / 1000;
+                    const speed = scannedDirs / elapsedTime;
+                    const remainingDirs = totalDirs - scannedDirs;
+                    const remainingTime = Math.round(remainingDirs / speed);
+                    
+                    let timeText = '';
+                    if (remainingTime < 60) {
+                        timeText = `${remainingTime}秒`;
+                    } else if (remainingTime < 3600) {
+                        timeText = `${Math.round(remainingTime / 60)}分钟`;
+                    } else {
+                        timeText = `${Math.round(remainingTime / 3600)}小时`;
+                    }
+                    
+                    document.getElementById('remainingTime').textContent = timeText;
+                }
+            }
+        }
+
+        // 添加目录结果
+        function addDirResult(directory, statusCode) {
+            const resultsDiv = document.getElementById('results');
+            const dirDiv = document.createElement('div');
+            dirDiv.className = 'dir-item';
+            
+            // 根据状态码设置不同的图标和颜色
+            let iconClass = 'bx-check-circle text-success';
+            if (statusCode >= 300 && statusCode < 400) {
+                iconClass = 'bx-redo text-warning';
+            } else if (statusCode >= 400) {
+                iconClass = 'bx-x-circle text-danger';
+            }
+            
+            dirDiv.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>${directory}</strong>
+                        <span class="ms-2 badge ${statusCode === 200 ? 'bg-success' : 'bg-secondary'}">${statusCode}</span>
+                    </div>
+                    <i class="bx ${iconClass}"></i>
+                </div>
+            `;
+            resultsDiv.insertBefore(dirDiv, resultsDiv.firstChild);
+        }
+
+        // 开始扫描
+        document.getElementById('scanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (isScanning) {
+                alert('扫描正在进行中，请等待完成或点击停止');
+                return;
+            }
+
+            const targetUrl = document.getElementById('target_url').value;
+            const useDefault = document.getElementById('use_default').checked;
+            const wordlist = document.getElementById('wordlist').value;
+
+            if (!useDefault && !wordlist.trim()) {
+                alert('请提供自定义字典或使用默认字典');
+                return;
+            }
+
+            // 重置计数器
+            scannedDirs = 0;
+            foundDirs = 0;
+            errorDirs = 0;
+            isScanning = true;
+            scanStartTime = Date.now();
+            
+            // 清空结果
+            document.getElementById('results').innerHTML = '';
+            document.querySelector('.progress-bar').style.width = '0%';
+            
+            // 更新UI状态
+            document.getElementById('scanButton').disabled = true;
+            document.getElementById('stopScan').disabled = false;
+            
+            // 开始扫描
+            socket.emit('start_dirscan', {
+                target_url: targetUrl,
+                use_default: useDefault,
+                wordlist: wordlist
+            });
+        });
+
+        // 停止扫描
+        document.getElementById('stopScan').addEventListener('click', function() {
+            if (isScanning) {
+                socket.emit('stop_dirscan');
+                document.getElementById('scanButton').disabled = false;
+                document.getElementById('stopScan').disabled = true;
+            }
+        });
+
+        // WebSocket事件处理
+        socket.on('dirscan_progress', function(data) {
+            totalDirs = data.total;
+            scannedDirs = data.scanned;
+            foundDirs = data.found;
+            errorDirs = data.errors;
+            
+            updateStats();
+            updateProgress();
+        });
+
+        socket.on('dir_result', function(data) {
+            addDirResult(data.directory, data.status_code);
+            foundDirs += 1;
+            scannedDirs += 1;
+            errorDirs += 1;
+            updateStats();
+            updateProgress();
+        });
+
+        socket.on('dirscan_complete', function(data) {
+            console.log('扫描完成:', data);
+            isScanning = false;
+            document.getElementById('scanButton').disabled = false;
+            document.getElementById('stopScan').disabled = true;
+            
+            // 显示完成消息
+            const resultsDiv = document.getElementById('results');
+            const completeDiv = document.createElement('div');
+            completeDiv.className = 'alert alert-success mt-3';
+            completeDiv.innerHTML = `
+                <i class="bx bx-check-circle"></i>
+                扫描完成！共扫描 ${data.total_scanned} 个目录，发现 ${data.found_directories.length} 个有效目录，错误 ${data.error_count} 个。
+            `;
+            resultsDiv.insertBefore(completeDiv, resultsDiv.firstChild);
+        });
+
+        socket.on('dirscan_error', function(data) {
+            console.error('扫描错误:', data.error);
+            isScanning = false;
+            document.getElementById('scanButton').disabled = false;
+            document.getElementById('stopScan').disabled = true;
+            
+            // 显示错误消息
+            const resultsDiv = document.getElementById('results');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.innerHTML = `
+                <i class="bx bx-error-circle"></i>
+                扫描错误: ${data.error}
+            `;
+            resultsDiv.insertBefore(errorDiv, resultsDiv.firstChild);
+        });
+
+        socket.on('dirscan_stopped', function(data) {
+            console.log('扫描已停止:', data);
+            isScanning = false;
+            document.getElementById('scanButton').disabled = false;
+            document.getElementById('stopScan').disabled = true;
+            
+            // 显示停止消息
+            const resultsDiv = document.getElementById('results');
+            const stopDiv = document.createElement('div');
+            stopDiv.className = 'alert alert-warning mt-3';
+            stopDiv.innerHTML = `
+                <i class="bx bx-stop-circle"></i>
+                扫描已停止
+            `;
+            resultsDiv.insertBefore(stopDiv, resultsDiv.firstChild);
+        });
+
+        socket.on('dirscan_current', function(data) {
+            document.getElementById('currentDir').textContent = '正在扫描目录: ' + data.directory;
+        });
+
+        // 页面卸载时清理
+        window.addEventListener('beforeunload', function() {
+            if (isScanning) {
+                socket.emit('stop_dirscan');
+            }
+        });
+    </script>
+</body>
+</html>
