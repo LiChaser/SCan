@@ -1,0 +1,144 @@
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [Nginx,jsdelivr] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] https://www.baidu.com/ [百度一下，你就知道]
+[Web] [403] https://wn.pos.baidu.com
+[Web] [405] https://bdstatic.com [405 Not Allowed]
+[Web] [200] https://map.baidu.com [百度地图]
+[Web] [302] https://dueros.baidu.com [302 Found]
+[Web] [200] https://xueshu.baidu.com [百度学术-保持学习的态度]
+[Web] [302] https://eyun.baidu.com [302 Found]
+[Web] [301] https://apollo.auto [301 Moved Permanently]
+[Web] [301] https://bce.baidu.com
+[Web] [302] https://safe.baidu.com [302 Found]
+[Web] [500] https://smartapps.cn
+[Web] [302] https://hao222.com [302 Found]
+[Web] [500] https://chuanke.com
+[Web] [200] https://su.baidu.com [百度云加速-CDN、网站攻击防护、SEO优化工具]
+[Web] [405] https://baiducontent.com [405 Not Allowed]
+[Web] [302] https://baidu.com [302 Found]
+[Web] [301] https://hao123.com
+[Web] [500] https://mct.y.nuomi.com
+[Web] [405] https://bdimg.com [405 Not Allowed]
+[Web] [403] https://update.pan.baidu.com [403 Forbidden]
+[Web] [200] https://log.hm.baidu.com
+[Web] [200] https://mipcdn.com
+[Web] [302] https://im.baidu.com [302 Found]
+[Web] [200] https://cm.pos.baidu.com [百度网盟推广]
+[Web] [200] https://dwz.cn [百度短网址]
+[Web] [301] https://mbd.baidu.com [301 Moved Permanently]
+[Web] [302] https://www.baidu.cn
+[Web] [200] https://click.hm.baidu.com
+[Web] [200] https://hao123.baidu.com
+[Web] [200] https://news.baidu.com [百度新闻——海量中文资讯平台]
+[Web] [200] https://fanyi.baidu.com [百度翻译-您的超级翻译伙伴（文本、文档翻译）]
+[Web] [301] https://91.com
+[Web] [405] https://baidustatic.com [405 Not Allowed]
+[Web] [302] https://haokan.com
+[Web] [200] https://cloud.baidu.com [百度智能云-云智一体深入产业]
+[Web] [302] https://www.baidu.com.cn
+[Web] [200] http://www.baidu.com/baidu.html?from=noscript [百度一下，你就知道]
+[Finger] https://smartapps.cn/ [500] [Baidu-BFE]
+[Finger] https://log.hm.baidu.com/ [200] [Apache-Web-Server]
+[Finger] https://fanyi.baidu.com/mtpe-individual/multimodal [200] [Apache-Web-Server,Exposure-文件上传表单] [百度翻译-您的超级翻译伙伴（文本、文档翻译）]
+[Finger] https://wn.pos.baidu.com/ [403] [Nginx]
+[Finger] https://dwz.cn/ [200] [Baidu- webmaster platform,Nginx] [百度短网址]
+[Finger] https://haokan.com/ [302] [DigiCert-Cert]
+[Finger] https://map.baidu.com/ [200] [Apache-Web-Server,Sogou search - webmaster platform,layer.js] [百度地图]
+[Finger] https://xueshu.baidu.com/ [200] [Baidu- webmaster platform] [百度学术-保持学习的态度]
+[Finger] https://chuanke.com/ [500] [Baidu-BFE]
+[Finger] https://eyun.baidu.com/ [302] [DigiCert-Cert,Nginx] [302 Found]
+[Finger] https://su.baidu.com/ [200] [Baidu- webmaster platform,Baidu- Cloud Acceleration,jQuery] [百度云加速-CDN、网站攻击防护、SEO优化工具]
+[Finger] https://baiducontent.com/ [405] [DigiCert-Cert,Baidu-BFE] [405 Not Allowed]
+[Finger] https://cm.pos.baidu.com/ [200] [Nginx] [百度网盟推广]
+[Finger] https://hao123.baidu.com/ [200] [Nginx]
+[Finger] https://click.hm.baidu.com/ [200] [Apache-Web-Server]
+[Finger] https://baidustatic.com/ [405] [DigiCert-Cert,Baidu-BFE] [405 Not Allowed]
+[Finger] https://www.baidu.com/ [200] [jQuery] [百度一下，你就知道]
+[Finger] https://baidu.com/ [302] [DigiCert-Cert,Baidu-BFE] [302 Found]
+[Finger] https://cloud.baidu.com/ [200] [Baidu- webmaster platform,360-webmaster platform,Next.js,Sogou search - webmaster platform] [百度智能云-云智一体深入产业]
+[Finger] http://www.baidu.com/baidu.html [200] [Apache-Web-Server] [百度一下，你就知道]
+[Finger] https://hao222.com/ [302] [Nginx] [302 Found]
+[Finger] https://im.baidu.com/ [302] [Apache-Web-Server] [302 Found]
+[Finger] https://news.baidu.com/ [200] [jQuery-ui,jQuery,layer.js,Nginx] [百度新闻——海量中文资讯平台]
+[Finger] https://mipcdn.com/ [200] [Nginx]
+[Finger] https://bdstatic.com/ [405] [DigiCert-Cert,Baidu-BFE] [405 Not Allowed]
+[Finger] https://apollo.auto/ [301] [Nginx] [301 Moved Permanently]
+[Finger] https://safe.baidu.com/ [302] [Nginx] [302 Found]
+[Finger] https://mct.y.nuomi.com/ [500] [Baidu-BFE]
+[Finger] https://bdimg.com/ [405] [DigiCert-Cert,Baidu-BFE] [405 Not Allowed]
+[Finger] https://update.pan.baidu.com/ [403] [PHP,DigiCert-Cert,Lighttpd] [403 Forbidden]
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [jsdelivr,Nginx] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [jsdelivr,Nginx] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [jsdelivr,Nginx] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [Nginx,jsdelivr] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] http://117.72.218.10/ [台州学院双传奇：电竞与学术的交织]
+[Finger] http://117.72.218.10/ [200] [jsdelivr,Nginx] [台州学院双传奇：电竞与学术的交织]
+[Web] [200] https://www.baidu.com/ [百度一下]
+[Web] [403] https://wn.pos.baidu.com
+[Web] [405] https://baidustatic.com [405 Not Allowed]
+[Web] [301] https://hao123.com
+[Web] [200] https://hao123.baidu.com
+[Web] [302] https://www.baidu.cn
+[Web] [302] https://www.baidu.com.cn
+[Web] [405] https://bdimg.com [405 Not Allowed]
+[Web] [200] https://click.hm.baidu.com
+[Web] [200] https://mipcdn.com
+[Web] [200] https://xueshu.baidu.com [百度学术 - 保持学习的态度]
+[Web] [302] https://safe.baidu.com [302 Found]
+[Web] [301] https://91.com
+[Web] [500] https://chuanke.com
+[Web] [403] https://update.pan.baidu.com [403 Forbidden]
+[Web] [200] https://news.baidu.com [百度新闻——海量中文资讯平台]
+[Web] [302] https://eyun.baidu.com [302 Found]
+[Web] [301] https://mbd.baidu.com [301 Moved Permanently]
+[Web] [200] https://fanyi.baidu.com [百度翻译-您的超级翻译伙伴（文本、文档翻译）]
+[Web] [405] https://bdstatic.com [405 Not Allowed]
+[Web] [302] https://dueros.baidu.com [302 Found]
+[Web] [302] https://baidu.com [302 Found]
+[Web] [200] https://cm.pos.baidu.com [百度网盟推广]
+[Web] [405] https://baiducontent.com [405 Not Allowed]
+[Web] [200] https://map.baidu.com [百度地图]
+[Web] [500] https://mct.y.nuomi.com
+[Web] [302] https://hao222.com [302 Found]
+[Web] [301] https://apollo.auto [301 Moved Permanently]
+[Web] [302] https://im.baidu.com [302 Found]
+[Web] [302] https://haokan.com
+[Web] [200] https://dwz.cn [百度短网址]
+[Web] [200] https://su.baidu.com [百度云加速-CDN、网站攻击防护、SEO优化工具]
+[Web] [200] https://log.hm.baidu.com
+[Web] [200] https://cloud.baidu.com [百度智能云-云智一体深入产业]
+[Web] [500] https://smartapps.cn
+[Web] [301] https://bce.baidu.com
+[Finger] https://baidustatic.com/ [405] [Baidu-BFE,DigiCert-Cert] [405 Not Allowed]
+[Finger] https://click.hm.baidu.com/ [200] [Apache-Web-Server]
+[Finger] https://baidu.com/ [302] [Baidu-BFE,DigiCert-Cert] [302 Found]
+[Finger] https://cm.pos.baidu.com/ [200] [Nginx] [百度网盟推广]
+[Finger] https://baiducontent.com/ [405] [Baidu-BFE,DigiCert-Cert] [405 Not Allowed]
+[Finger] https://mct.y.nuomi.com/ [500] [Baidu-BFE]
+[Finger] https://hao222.com/ [302] [Nginx] [302 Found]
+[Finger] https://haokan.com/ [302] [DigiCert-Cert]
+[Finger] https://mipcdn.com/ [200] [Nginx]
+[Finger] https://apollo.auto/ [301] [Nginx] [301 Moved Permanently]
+[Finger] https://su.baidu.com/ [200] [jQuery,Baidu- Cloud Acceleration,Baidu- webmaster platform] [百度云加速-CDN、网站攻击防护、SEO优化工具]
+[Finger] https://wn.pos.baidu.com/ [403] [Nginx]
+[Finger] https://hao123.baidu.com/ [200] [Nginx]
+[Finger] https://safe.baidu.com/ [302] [Nginx] [302 Found]
+[Finger] https://bdimg.com/ [405] [Baidu-BFE,DigiCert-Cert] [405 Not Allowed]
+[Finger] https://xueshu.baidu.com/ [200] [jQuery,Baidu- webmaster platform] [百度学术 - 保持学习的态度]
+[Finger] https://update.pan.baidu.com/ [403] [Lighttpd,PHP,DigiCert-Cert] [403 Forbidden]
+[Finger] https://im.baidu.com/ [302] [Apache-Web-Server] [302 Found]
+[Finger] https://dwz.cn/ [200] [Baidu- webmaster platform,Nginx] [百度短网址]
+[Finger] https://smartapps.cn/ [500] [Baidu-BFE]
+[Finger] https://www.baidu.com/ [200] [Exposure-文件上传表单,Apache-Web-Server] [百度一下]
+[Finger] https://eyun.baidu.com/ [302] [DigiCert-Cert,Nginx] [302 Found]
+[Finger] https://log.hm.baidu.com/ [200] [Apache-Web-Server]
+[Finger] https://news.baidu.com/ [200] [jQuery-ui,jQuery,layer.js,Nginx] [百度新闻——海量中文资讯平台]
+[Finger] https://cloud.baidu.com/ [200] [Next.js,Sogou search - webmaster platform,360-webmaster platform,Baidu- webmaster platform] [百度智能云-云智一体深入产业]
+[Finger] https://chuanke.com/ [500] [Baidu-BFE]
+[Finger] https://fanyi.baidu.com/mtpe-individual/multimodal [200] [Exposure-文件上传表单,Apache-Web-Server] [百度翻译-您的超级翻译伙伴（文本、文档翻译）]
+[Finger] https://bdstatic.com/ [405] [Baidu-BFE,DigiCert-Cert] [405 Not Allowed]
+[Finger] https://map.baidu.com/ [200] [Sogou search - webmaster platform,Apache-Web-Server,layer.js] [百度地图]

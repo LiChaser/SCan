@@ -1,0 +1,10 @@
+Flask==2.0.1
+Flask-SocketIO==5.1.1
+Flask-CORS==3.0.10
+gevent==21.8.0
+gevent-websocket==0.10.1
+requests==2.26.0
+beautifulsoup4==4.9.3
+dnspython==2.1.0
+python-engineio==4.2.1
+python-socketio==5.4.0 

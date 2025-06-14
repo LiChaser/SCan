@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}AI调试器{% endblock %}
+
+{% block extra_css %}
+<style>
+.debug-output {
+    background-color: #1a1a1a;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', monospace;
+    padding: 15px;
+    height: 600px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-radius: 0 0 4px 4px;
+}
+
+.debug-output .error {
+    color: #f14c4c;
+}
+
+.debug-output .info {
+    color: #569cd6;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">AI调试器</h5>
+                </div>
+                <div class="card-body">
+                    <!-- 执行按钮 -->
+                    <button id="startDebug" class="btn btn-primary">
+                        <i class="fas fa-play"></i> 开始调试
+                    </button>
+                    
+                    <!-- 输出区域 -->
+                    <div class="debug-output mt-3">
+                        <div id="debugOutput"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const startDebugButton = document.getElementById('startDebug');
+    const debugOutput = document.getElementById('debugOutput');
+    
+    // 连接WebSocket
+    const socket = io();
+    
+    // 开始调试
+    startDebugButton.addEventListener('click', function() {
+        socket.emit('start_debug', {});  // 发送一个空对象作为data参数
+        startDebugButton.disabled = true;
+        debugOutput.innerHTML = '';
+    });
+    
+    // 接收调试器状态
+    socket.on('debugger_status', function(data) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = data.type === 'error' ? 'error' : 'info';
+        messageDiv.textContent = data.message;
+        debugOutput.appendChild(messageDiv);
+        debugOutput.scrollTop = debugOutput.scrollHeight;
+    });
+});
+</script>
+{% endblock %}
